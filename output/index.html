@@ -121,7 +121,8 @@ document.getElementById("unfounded").textContent =
   `In this pull, ${fmt(D.unfounded)} violent/property reports (${D.unfounded_pct}%) were unfounded.`;
 document.getElementById("source").innerHTML =
   `Source: <a href="https://data.charlottenc.gov/" style="color:inherit">City of Charlotte Open Data</a>, CMPD Incidents layer. ` +
-  `Built with an open-source pipeline; code, data contract, and audit logs are published alongside this page.`;
+  `Built with an open-source pipeline: <a href="https://github.com/Amachirin102/NC-Crime-Pipeline" style="color:inherit">code and data contract</a> · ` +
+  `<a href="https://github.com/Amachirin102/NC-Crime-Pipeline/blob/main/docs/BUILD_LOG.md" style="color:inherit">how it was built and verified</a>.`;
 
 const pre = D.months.filter(m => !m.settled);
 document.getElementById("prelim").textContent = pre.length

@@ -68,6 +68,7 @@ down so they can be challenged.
 | 10 | Browser check at 375px | Chart axis text shrank to about 5px on phones (a fixed 820px SVG scaled down). | Redraw at the container's real width. |
 | 11 | Jurisdiction crosswalk review | `CHARLOTTE, NORTH CAROLINA` and `CHARLOTTEJAVASCRIPT:VOID PT_SU` (web-form residue) were unresolved. | Strip the state and country names; add a prefix tier. `MIDLAND`, `CONCORD`, and `FAYETTEVILLE` stay unresolved **on purpose**: they are real places outside the county. |
 | 12 | Live pull on Windows | The raw snapshot write failed: the path exceeded 260 characters in the temporary workspace. | Moved the project to a short path. |
+| 13 | First GitHub Actions run | Tests passed, but the live pull **failed after 65 s on GitHub's runner**. The same command passed locally with identical data. The reason was only in the job log, which needs a sign-in to read. | Failures now surface as public annotations. The city server's F5 firewall cookies (`BIGipServer…`, `TS…`) point to cloud IPs being refused. The monthly job is now manual and runs from a home connection; tests and Pages deploy still run on GitHub. |
 
 ## 4. Decisions a person has to own
 

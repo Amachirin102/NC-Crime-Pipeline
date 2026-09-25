@@ -1,8 +1,12 @@
 name: monthly-pipeline
 
+# Manual only. The city's GIS server sits behind an F5 web firewall that
+# appears to refuse GitHub's cloud runners (run #1 failed in the pull step;
+# the same command passes from a residential connection). To automate, run
+# this on a self-hosted runner or a local scheduled task, then restore:
+#   schedule:
+#     - cron: "0 12 5 * *"     # 5th of each month, 12:00 UTC
 on:
-  schedule:
-    - cron: "0 12 5 * *"     # 5th of each month, 12:00 UTC
   workflow_dispatch:
 
 permissions:

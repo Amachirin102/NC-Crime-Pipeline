@@ -4,6 +4,10 @@ A monthly pipeline that turns Charlotte-Mecklenburg Police open data into a
 public trend chart that a journalist can cite. It audits every run, so bad
 data is caught and explained before it is published.
 
+**[▶ View the live page](https://amachirin102.github.io/NC-Crime-Pipeline/)** ·
+[How it was built and verified](docs/BUILD_LOG.md) ·
+[Entity-resolution results](output/er_eval.txt)
+
 ![Monthly violent and property crime reports, CMPD](output/cmpd_monthly_trend.png)
 
 **Public page:** [`output/index.html`](output/index.html). It is self-contained
@@ -16,7 +20,7 @@ view, plain-language caveats, and this run's audit results.
 | **Record linkage** | Free-text jurisdiction resolution on live data · person/address matching benchmarked at **F1 0.996** vs 0.536 for exact matching |
 | **Validation** | YAML data contracts · error budget that blocks publishing · deadline rules · volume anomalies · month-over-month restatement diff |
 | **Output** | Chart and page built for non-technical readers; caveats written in plain language |
-| **How it was built** | With Claude Code. [`docs/BUILD_LOG.md`](docs/BUILD_LOG.md) lists the 12 defects verification caught |
+| **How it was built** | With Claude Code. [`docs/BUILD_LOG.md`](docs/BUILD_LOG.md) lists the 13 problems verification caught |
 
 ---
 
@@ -135,9 +139,15 @@ no zero-report days · all required columns present.
 **Warnings** (shown on the public page): volume anomaly, restatements, schema
 fingerprint change, and every record-level WARN.
 
-`.github/workflows/monthly.yml` runs this on the 5th of each month. A passing run
-commits the new page, chart, and accepted snapshot. A failing run uploads the
-audit evidence and publishes nothing.
+`.github/workflows/monthly.yml` runs the whole pipeline and commits the new
+page, chart, and accepted snapshot. A failing run uploads the audit evidence and
+publishes nothing. **It is manual-only for now:** the city's GIS server sits
+behind an F5 web firewall that appears to refuse GitHub's cloud machines. The
+first GitHub run failed at the pull step, while the same command passes from a
+home connection. The monthly refresh runs locally (`python -m civicpipe run`,
+then push). A self-hosted runner would restore full automation.
+`tests.yml` runs the test suite on every push, and `pages.yml` publishes
+`output/` to GitHub Pages.
 
 ## Run it
 
