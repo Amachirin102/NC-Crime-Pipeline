@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import traceback
 from datetime import date
 from pathlib import Path
 
@@ -150,10 +152,23 @@ def cmd_run(args) -> int:
     return 0
 
 
+def _gh_annotate(level: str, title: str, msg: str) -> None:
+    """In GitHub Actions, surface a message as a run annotation. Annotations are
+    visible on public repos without signing in; raw job logs are not."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    esc = lambda s: str(s).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    t = esc(title).replace(":", "%3A").replace(",", "%2C")
+    print(f"::{level} title={t}::{esc(msg)}", flush=True)
+
+
 def _print_gates(res):
     print("\nGATES")
     for g in res.gates:
         print(f"  [{g['status']:4}] {g['gate']:20} {g['detail']}")
+        if g["status"] in ("FAIL", "WARN"):
+            _gh_annotate("error" if g["status"] == "FAIL" else "warning",
+                         f"Gate {g['status']}: {g['gate']}", g["detail"])
     print("\nEXCEPTIONS")
     print(res.summary().to_string(index=False) if len(res.exceptions) else "  none")
 
@@ -245,4 +260,12 @@ def main(argv=None) -> int:
     e.add_argument("--n", type=int, default=1200)
     e.set_defaults(fn=cmd_er_eval)
     args = p.parse_args(argv)
-    return args.fn(args)
+    try:
+        return args.fn(args)
+    except BaseException as e:
+        if not isinstance(e, SystemExit) or e.code not in (0, None):
+            frames = traceback.extract_tb(e.__traceback__) if e.__traceback__ else []
+            ours = [f for f in frames if "civicpipe" in f.filename] or frames
+            where = f" at {Path(ours[-1].filename).name}:{ours[-1].lineno}" if ours else ""
+            _gh_annotate("error", f"civicpipe {args.cmd} crashed", f"{type(e).__name__}: {e}{where}")
+        raise
