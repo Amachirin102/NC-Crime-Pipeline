@@ -1,0 +1,10 @@
+# Human sign-off on audit WARNs. A reviewed anomaly still shows on the public
+# audit table (with this note), but stops re-alerting on every run.
+# Add an entry only after checking the underlying records - never to silence noise.
+
+volume_anomaly:
+  "2026-02": >-
+    Reviewed 2026-09-24. All 28 days present (daily_gaps PASS; min day 102 on
+    Sun Feb 1). 222 reports/day vs 225 in Jan 2026 and 247.5 in Feb 2025: the
+    dip continues the Nov-Jan winter low and matches the ~10% year-over-year
+    decline in the series. Treated as real, not a load failure.

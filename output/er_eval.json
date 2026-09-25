@@ -1,0 +1,205 @@
+{
+  "threshold_chosen_on_dev": 0.65,
+  "dev": {
+    "records": {
+      "a": 1452,
+      "b": 1437,
+      "true_pairs": 1385
+    },
+    "at_threshold": {
+      "precision": 0.9971,
+      "recall": 0.9942,
+      "f1": 0.9957,
+      "tp": 1377,
+      "fp": 4,
+      "fn": 8
+    }
+  },
+  "test": {
+    "records": {
+      "a": 1446,
+      "b": 1445,
+      "true_pairs": 1386
+    },
+    "blocking": {
+      "candidate_pairs": 11493,
+      "all_pairs": 2089470,
+      "reduction_ratio": 0.9945,
+      "pair_completeness": 1.0
+    },
+    "baseline_exact": {
+      "precision": 1.0,
+      "recall": 0.3658,
+      "f1": 0.5357,
+      "tp": 507,
+      "fp": 0,
+      "fn": 879
+    },
+    "at_threshold": {
+      "precision": 0.9993,
+      "recall": 0.9935,
+      "f1": 0.9964,
+      "tp": 1377,
+      "fp": 1,
+      "fn": 9
+    }
+  },
+  "test_sweep": [
+    {
+      "threshold": 0.4,
+      "precision": 0.9971,
+      "recall": 0.9978,
+      "f1": 0.9975,
+      "tp": 1383,
+      "fp": 4,
+      "fn": 3
+    },
+    {
+      "threshold": 0.45,
+      "precision": 0.9971,
+      "recall": 0.9978,
+      "f1": 0.9975,
+      "tp": 1383,
+      "fp": 4,
+      "fn": 3
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.9971,
+      "recall": 0.9978,
+      "f1": 0.9975,
+      "tp": 1383,
+      "fp": 4,
+      "fn": 3
+    },
+    {
+      "threshold": 0.55,
+      "precision": 0.9971,
+      "recall": 0.9978,
+      "f1": 0.9975,
+      "tp": 1383,
+      "fp": 4,
+      "fn": 3
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.9993,
+      "recall": 0.9986,
+      "f1": 0.9989,
+      "tp": 1384,
+      "fp": 1,
+      "fn": 2
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.9993,
+      "recall": 0.9935,
+      "f1": 0.9964,
+      "tp": 1377,
+      "fp": 1,
+      "fn": 9
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.9985,
+      "recall": 0.9726,
+      "f1": 0.9854,
+      "tp": 1348,
+      "fp": 2,
+      "fn": 38
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.9993,
+      "recall": 0.9675,
+      "f1": 0.9831,
+      "tp": 1341,
+      "fp": 1,
+      "fn": 45
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.9977,
+      "recall": 0.9481,
+      "f1": 0.9723,
+      "tp": 1314,
+      "fp": 3,
+      "fn": 72
+    },
+    {
+      "threshold": 0.85,
+      "precision": 0.9991,
+      "recall": 0.8377,
+      "f1": 0.9113,
+      "tp": 1161,
+      "fp": 1,
+      "fn": 225
+    },
+    {
+      "threshold": 0.9,
+      "precision": 0.9976,
+      "recall": 0.5988,
+      "f1": 0.7484,
+      "tp": 830,
+      "fp": 2,
+      "fn": 556
+    }
+  ],
+  "test_recall_by_corruption": [
+    {
+      "corruption": "none",
+      "true_pairs": 380,
+      "recall": 1.0
+    },
+    {
+      "corruption": "multiple",
+      "true_pairs": 307,
+      "recall": 0.9707
+    },
+    {
+      "corruption": "typo_last",
+      "true_pairs": 114,
+      "recall": 1.0
+    },
+    {
+      "corruption": "no_dob",
+      "true_pairs": 104,
+      "recall": 1.0
+    },
+    {
+      "corruption": "dob_typo",
+      "true_pairs": 101,
+      "recall": 1.0
+    },
+    {
+      "corruption": "moved",
+      "true_pairs": 100,
+      "recall": 1.0
+    },
+    {
+      "corruption": "typo_first",
+      "true_pairs": 97,
+      "recall": 1.0
+    },
+    {
+      "corruption": "swap_names",
+      "true_pairs": 88,
+      "recall": 1.0
+    },
+    {
+      "corruption": "nickname",
+      "true_pairs": 47,
+      "recall": 1.0
+    },
+    {
+      "corruption": "dob_transpose",
+      "true_pairs": 37,
+      "recall": 1.0
+    },
+    {
+      "corruption": "drop_suffix",
+      "true_pairs": 11,
+      "recall": 1.0
+    }
+  ]
+}

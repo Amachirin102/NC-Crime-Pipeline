@@ -1,0 +1,47 @@
+# Data contract for incident-level records (canonical schema, after mapping).
+# Severity:  ERROR -> row is quarantined and counts toward the batch error budget
+#            WARN  -> row passes, exception is logged for review
+# Batch gates decide whether a run may publish at all.
+
+name: incidents
+key: incident_id
+
+columns:
+  incident_id:    {type: str,  required: true, regex: '^\d{8}-\d{4}-\d{2}$', regex_severity: WARN}
+  date_reported:  {type: date, required: true, min: '2000-01-01', not_future: true}
+  # WARN, not ERROR: the published series is bucketed by date_reported, so a
+  # typo'd occurrence year (seen live: 1926-07-19) must not drop a real report.
+  date_occurred:  {type: date, required: false, min: '1950-01-01', min_severity: WARN, not_future: true}
+  offense_code:   {type: str,  required: true, regex: '^(\d{2}[A-Z]|\d{3})$', regex_severity: WARN}
+  clearance_date: {type: date, required: false, not_future: true}
+  lat:            {type: float, required: false, min: 34.9, max: 35.6, range_severity: WARN}
+  lon:            {type: float, required: false, min: -81.2, max: -80.5, range_severity: WARN}
+
+row_rules:
+  - {name: occurred_after_reported, severity: WARN,
+     desc: 'incident began after it was reported'}
+  - {name: cleared_before_reported, severity: WARN,
+     desc: 'clearance date precedes report date'}
+  - {name: id_date_mismatch, severity: WARN,
+     desc: 'report-ID date prefix disagrees with date_reported'}
+  - {name: not_local_midnight, severity: WARN,
+     desc: 'date-only field carries a non-midnight local time (timezone handling upstream?)'}
+  - {name: jurisdiction_unresolved, severity: WARN,
+     desc: 'city value could not be resolved to a Mecklenburg municipality'}
+
+batch_gates:
+  max_error_rate: 0.005          # > 0.5% quarantined rows blocks publishing
+  require_reconciled_count: true # rows pulled must equal server-reported count
+  max_staleness_days: 10         # newest record must be within N days of pull
+  expected_fingerprint: null     # set after first accepted run; drift -> WARN
+
+deadlines:
+  # A month is publishable once this many days have passed since it ended.
+  # Late reports keep arriving for weeks; publishing earlier undercounts.
+  month_settle_days: 30
+  # For agency file drops: file covering period M is due by this day of M+1.
+  file_due_day_of_following_month: 15
+
+volume:
+  trailing_months: 12
+  robust_z_warn: 3.5

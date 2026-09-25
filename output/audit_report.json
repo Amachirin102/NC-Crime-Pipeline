@@ -1,0 +1,83 @@
+{
+  "snapshot": "2026-09-24",
+  "as_of": "2026-09-24",
+  "passed": true,
+  "gates": [
+    {
+      "gate": "error_rate",
+      "status": "PASS",
+      "detail": "0 of 432,888 rows quarantined (0.000%); budget 0.50%"
+    },
+    {
+      "gate": "reconciled_count",
+      "status": "PASS",
+      "detail": "server 432,888 vs fetched 432,888"
+    },
+    {
+      "gate": "freshness",
+      "status": "PASS",
+      "detail": "newest record 2026-09-22, 2 days before pull"
+    },
+    {
+      "gate": "volume_anomaly",
+      "status": "REVIEWED",
+      "detail": "2026-02: 222.0/day vs trailing median 252.1 (robust z=-3.57). Reviewed 2026-09-24. All 28 days present (daily_gaps PASS; min day 102 on Sun Feb 1). 222 reports/day vs 225 in Jan 2026 and 247.5 in Feb 2025: the dip continues the Nov-Jan winter low and matches the ~10% year-over-year decline in the series. Treated as real, not a load failure."
+    },
+    {
+      "gate": "daily_gaps",
+      "status": "PASS",
+      "detail": "0 days with zero reports"
+    },
+    {
+      "gate": "restatements",
+      "status": "PASS",
+      "detail": "vs pull of 2026-09-24: +0 / -0 records, 0 changed, 0 month-group counts moved"
+    }
+  ],
+  "exceptions": [
+    {
+      "rule": "out_of_range",
+      "severity": "WARN",
+      "rows": 17,
+      "pct": 0.004
+    },
+    {
+      "rule": "jurisdiction_unresolved",
+      "severity": "WARN",
+      "rows": 16,
+      "pct": 0.004
+    },
+    {
+      "rule": "cleared_before_reported",
+      "severity": "WARN",
+      "rows": 11,
+      "pct": 0.003
+    },
+    {
+      "rule": "format",
+      "severity": "WARN",
+      "rows": 7,
+      "pct": 0.002
+    },
+    {
+      "rule": "implausibly_old",
+      "severity": "WARN",
+      "rows": 1,
+      "pct": 0.0
+    }
+  ],
+  "diff": {
+    "added": 0,
+    "removed": 0,
+    "records_changed": 0,
+    "field_changes": {},
+    "months_restated": 0
+  },
+  "jurisdiction_methods": {
+    "exact": 432797,
+    "fuzzy": 67,
+    "prefix": 4,
+    "unresolved": 16,
+    "zip": 4
+  }
+}

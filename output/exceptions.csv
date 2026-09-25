@@ -1,0 +1,53 @@
+record_key,rule,severity,column,value
+20241113-07490-1,format,WARN,incident_id,20241113-07490-1
+20250808-17500-1,format,WARN,incident_id,20250808-17500-1
+20250221-16310-1,format,WARN,incident_id,20250221-16310-1
+20250506-08250-2,format,WARN,incident_id,20250506-08250-2
+20250628-20410-8,format,WARN,incident_id,20250628-20410-8
+20241113-12220-2,format,WARN,incident_id,20241113-12220-2
+20241030-10480-0,format,WARN,incident_id,20241030-10480-0
+20260810-1413-00,implausibly_old,WARN,date_occurred,1926-07-19
+20230628-1533-05,out_of_range,WARN,lat,-80.963592
+20231121-2240-00,out_of_range,WARN,lat,-80.963592
+20231002-0225-00,out_of_range,WARN,lat,-80.963592
+20260313-1841-06,out_of_range,WARN,lat,-80.963592
+20241123-2249-00,out_of_range,WARN,lat,-80.963592
+20240410-0757-00,out_of_range,WARN,lat,-80.963592
+20241104-2101-01,out_of_range,WARN,lat,-80.963592
+20221101-1850-00,out_of_range,WARN,lat,-80.963592
+20230701-2106-03,out_of_range,WARN,lat,-80.963592
+20230819-0812-01,out_of_range,WARN,lat,-80.963592
+20250125-1034-00,out_of_range,WARN,lat,-80.963592
+20221123-1613-02,out_of_range,WARN,lat,-80.963592
+20220830-1126-00,out_of_range,WARN,lat,-80.963592
+20241203-1745-02,out_of_range,WARN,lat,-80.963592
+20230702-0649-02,out_of_range,WARN,lat,-80.963592
+20230615-1953-00,out_of_range,WARN,lat,-80.963592
+20240214-0842-04,out_of_range,WARN,lat,-80.963592
+20230106-0711-01,cleared_before_reported,WARN,clearance_date,2022-01-06
+20260221-0816-00,cleared_before_reported,WARN,clearance_date,2026-01-26
+20230930-2254-00,cleared_before_reported,WARN,clearance_date,2011-07-25
+20260214-1010-00,cleared_before_reported,WARN,clearance_date,2026-02-04
+20230106-0632-01,cleared_before_reported,WARN,clearance_date,2022-01-06
+20260219-1550-02,cleared_before_reported,WARN,clearance_date,2026-02-16
+20240201-1333-01,cleared_before_reported,WARN,clearance_date,2024-01-02
+20260110-0423-00,cleared_before_reported,WARN,clearance_date,2025-01-10
+20260106-1532-06,cleared_before_reported,WARN,clearance_date,2025-01-06
+20251021-2119-01,cleared_before_reported,WARN,clearance_date,1999-10-21
+20260906-0052-02,cleared_before_reported,WARN,clearance_date,2026-09-05
+20240617-2158-00,jurisdiction_unresolved,WARN,city,107
+20220525-1638-02,jurisdiction_unresolved,WARN,city,MIDLAND
+20251127-2323-02,jurisdiction_unresolved,WARN,city,MIDLAND
+20250802-1245-00,jurisdiction_unresolved,WARN,city,J
+20241024-1807-02,jurisdiction_unresolved,WARN,city,FAYETTEVILLE
+20220626-0759-00,jurisdiction_unresolved,WARN,city,OTHER/NOT LISTED
+20240731-1013-00,jurisdiction_unresolved,WARN,city,MIDLAND
+20230405-1053-02,jurisdiction_unresolved,WARN,city,MIDLAND
+20220808-0512-01,jurisdiction_unresolved,WARN,city,OTHER/NOT LISTED
+20220308-0849-00,jurisdiction_unresolved,WARN,city,RT SIDE
+20241205-1500-00,jurisdiction_unresolved,WARN,city,110
+20220715-0825-00,jurisdiction_unresolved,WARN,city,CONCORD
+20230731-1718-01,jurisdiction_unresolved,WARN,city,MIDLAND
+20251123-0045-02,jurisdiction_unresolved,WARN,city,MIDLAND
+20240224-0949-00,jurisdiction_unresolved,WARN,city,OTHER/NOT LISTED
+20220309-1654-00,jurisdiction_unresolved,WARN,city,MIDLAND

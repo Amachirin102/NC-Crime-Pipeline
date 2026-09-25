@@ -1,0 +1,8 @@
+# Raw pulls are large and reproducible from the API; manifests are kept.
+data/raw/**/*.parquet
+!data/raw/**/manifest.json
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.claude/

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.pdf binary
+*.parquet binary
+*.png binary
+# fixtures reproduce real exports byte-for-byte (CRLF, cp1252): never normalize
+tests/fixtures/** -text

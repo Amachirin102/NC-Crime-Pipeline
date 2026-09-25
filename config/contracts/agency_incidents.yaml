@@ -1,0 +1,29 @@
+# Contract for incident-level CSV drops from partner agencies (after header mapping).
+# Looser than the CMPD contract: each agency has its own case-number format, and
+# CMPD-specific cross-checks (report-ID date prefix) don't apply.
+
+name: agency_incidents
+key: incident_id
+
+columns:
+  incident_id:    {type: str,  required: true}
+  date_reported:  {type: date, required: true, min: '2000-01-01', not_future: true}
+  date_occurred:  {type: date, required: false, min: '1950-01-01', not_future: true}
+  offense_code:   {type: str,  required: true, regex: '^(\d{2}[A-Z]|\d{3})$', regex_severity: ERROR}
+  lat:            {type: float, required: false, min: 34.9, max: 35.6, range_severity: WARN}
+  lon:            {type: float, required: false, min: -81.2, max: -80.5, range_severity: WARN}
+
+row_rules:
+  - {name: occurred_after_reported, severity: WARN,
+     desc: 'incident began after it was reported'}
+
+batch_gates:
+  max_error_rate: 0.02
+
+deadlines:
+  month_settle_days: 30
+  file_due_day_of_following_month: 15
+
+volume:
+  trailing_months: 12
+  robust_z_warn: 3.5
